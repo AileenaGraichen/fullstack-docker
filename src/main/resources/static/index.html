@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fullstack Demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+</head>
+<body class="container">
+<h1>Fullstack Demo</h1>
+
+<button id="btn-fetch-players" class="btn btn-primary">Fetch Players</button>
+<table class="table">
+  <thead>
+  <tr><th>Name</th><th>Country</th><th>Position</th></tr>
+  </thead>
+  <tbody id="tbl-body"></tbody>
+</table>
+<script>
+  const fetchPlayers = document.getElementById('btn-fetch-players');
+  const tbody = document.querySelector('#table-rows');
+  const url = 'http://localhost:8080/api/players';
+  fetchPlayers.addEventListener('click', () => {
+    fetch(url)
+            .then(response => response.json())
+            .then(players => {
+              const rowsAsStr = players.map(player => {
+                return `<tr>
+                        <td>${player.name}</td>
+                        <td>${player.country}</td>
+                        <td>${player.position}</td>
+                    </tr>`
+              }).join('');
+              document.getElementById("tbl-body").innerHTML = rowsAsStr
+            });
+  })
+</script>
+
+</body>
+</html>
+
