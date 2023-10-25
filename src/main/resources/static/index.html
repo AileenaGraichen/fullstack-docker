@@ -19,7 +19,7 @@
 <script>
   const fetchPlayers = document.getElementById('btn-fetch-players');
   const tbody = document.querySelector('#table-rows');
-  const url = 'http://localhost:8080/api/players';
+  const url = 'api/players';
   fetchPlayers.addEventListener('click', () => {
     fetch(url)
             .then(response => response.json())
